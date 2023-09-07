@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            height: 100vh;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+        .game{
+            height: 600px;
+            width: 600px;
+            border: 2px solid black;
+            background-color: white
+            
+        }
+        .ball{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
+<!-- <<<<<<< HEAD -->
     <h1>hello world</h1>
     <h1>sadiq</h1>
+<!-- ======= -->
+    <div class="container">
+        <div class="game">
+
+        </div>
+    </div>
+    <script>
+        window.onload=function(){
+            let ball=document.createElement("div")
+            ball.classList.add("ball")
+            let gameBox=document.querySelector(".game")
+            gameBox.appendChild(ball)
+        };
+    </script>
+    
+<!-- >>>>>>> feature-showball -->
 </body>
 </html>
