@@ -22,7 +22,10 @@
             height: 600px;
             width: 600px;
             border: 2px solid black;
-            background-color: white
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            
             
         }
         .ball{
@@ -30,6 +33,7 @@
             height: 200px;
             /* background-color: yellow; */
             border-radius: 50%;
+           
         }
         .grid-one{
             display: grid;
@@ -55,7 +59,7 @@
             let ball=document.createElement("div")
             ball.classList.add("ball")
             let gameBox=document.querySelector(".game")
-            gameBox.appendChild(ball)
+           //gameBox.appendChild(ball)
         
         const config ={
             1:{
@@ -70,7 +74,7 @@
         }
         let player={
             name:"pavan",
-            level:1 
+            level:2
         }
         console.log(player.level,config[player.level])
        
@@ -110,26 +114,76 @@
         }
 
         
-        let game={
-            running:false,
-            start(){
-                this.balls=getBalls(player,config)
-                this.balls.forEach(ball => {
-                    ball.toggle()
-                    gameBox.appendChild(ball.obj) 
-                });           //gameBox.appendChild(ball));
+    //     let game={
+    //         running:false,
+    //         start(){
+    //             this.balls=getBalls(player,config)
+    //             this.balls.forEach(ball => {                 // this.balls.forEach(ball=>gameBox.appendChild(ball))
+    //                 ball.toggle()
+    //                 gameBox.appendChild(ball.obj) 
+    //             });           
                 
-                this.running=true 
+    //             this.running=true 
                 
-            }
+    //         }
+    //     }
+    //     game.start()
+    //     game.balls[0].color="red"
+    //     game.balls[0].toggle()
+
+
+
+    // };
+    let game={
+        running:false,
+        start(){
+            this.balls=getBalls(player,config)
+            
+            this.balls.forEach(ball=>{ball.toggle()               //changes made to change ball color to red randomly
+            gameBox.appendChild(ball.obj)})
+            this.running=true
+            // this.update()
+        },
+
+         update(){
+            const ball = getRandomBall(this.balls)
+            this.balls.map(b=>{b.color = "yellow"
+        return b 
+    })
+    ball.color = "red"
+    this.balls.map(b=>b.toggle())
+            
         }
-        game.start()
-        game.balls[0].color="red"
-        game.balls[0].toggle()
-
-
-
+        
+  
     };
+          
+    function getRandomBall(balls){
+        let i = Math.ceil(Math.random()*100)%balls.length
+        return balls[i]
+    }
+
+    gameBox.onclick=function(e){
+        let clickedBall=game.balls.filter(b=>b.obj==e.target)[0]
+
+        if(clickedBall){
+            if(clickedBall.color=="red")
+            alert("caught")
+        else
+        alert("wrong")
+        }
+    }
+    game.start()
+   setInterval(()=>game.update(),100)
+
+    game.balls[1].color="red"
+    game.balls[1].toggle()
+
+   
+
+
+
+    };
     </script>
     
  
